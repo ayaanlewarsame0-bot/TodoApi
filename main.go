@@ -5,6 +5,7 @@ import (
 	"todo/handlers"
 	"todo/middleware"
 	"fmt"
+	"os"
 
 	"net/http"
 
@@ -31,11 +32,22 @@ func main() {
 	protectRoutes.HandleFunc("/delete", handlers.DeleteTodo) 
     protectRoutes.HandleFunc("/todo", handlers.GetAllTodo)
 	// start the server
-	fmt.Println("Server is running")
-	err := http.ListenAndServe(":8081", r)
-	if err != nil {
-		panic(err)
-	}
+	
+	//fmt.Println("Server is running")
+	//err := http.ListenAndServe(":8081", r)
+	//if err != nil {
+		//panic(err)
+		port := os.Getenv("PORT")
+     if port == "" {
+      port = "8081" 
+    }
+
+     fmt.Println("Server is running on port " + port)
+      err := http.ListenAndServe(":"+port, r)
+     if err != nil {
+     panic(err)
 }
+}
+	
 
 
