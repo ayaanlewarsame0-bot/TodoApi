@@ -14,7 +14,7 @@ var Db *gorm.DB
 
 func InitDB() {
 	// open the database
-	connStr := "user=postgres host=localhost password=Catarinax7 dbname=todo sslmode=disable"
+	connStr := "user=postgres host=localhost password=Catarinax7 port=5432 dbname=todo sslmode=disable"
 
 	var err error
 	Db, err = gorm.Open(postgres.Open(connStr), &gorm.Config{})
